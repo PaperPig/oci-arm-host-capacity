@@ -20,14 +20,14 @@ jobs:
 
       - name: Validate required secrets
         run: |
-          test -n "${{ secrets.OCI_REGION }}"
-          test -n "${{ secrets.OCI_USER_ID }}"
-          test -n "${{ secrets.OCI_TENANCY_ID }}"
-          test -n "${{ secrets.OCI_KEY_FINGERPRINT }}"
-          test -n "${{ secrets.OCI_PRIVATE_KEY_B64 }}"
-          test -n "${{ secrets.OCI_SUBNET_ID }}"
-          test -n "${{ secrets.OCI_IMAGE_ID }}"
-          test -n "${{ secrets.OCI_SSH_PUBLIC_KEY }}"
+          test -n "${{ secrets.OCI_REGION }}" || (echo "Missing OCI_REGION" && exit 1)
+          test -n "${{ secrets.OCI_USER_ID }}" || (echo "Missing OCI_USER_ID" && exit 1)
+          test -n "${{ secrets.OCI_TENANCY_ID }}" || (echo "Missing OCI_TENANCY_ID" && exit 1)
+          test -n "${{ secrets.OCI_KEY_FINGERPRINT }}" || (echo "Missing OCI_KEY_FINGERPRINT" && exit 1)
+          test -n "${{ secrets.OCI_PRIVATE_KEY_B64 }}" || (echo "Missing OCI_PRIVATE_KEY_B64" && exit 1)
+          test -n "${{ secrets.OCI_SUBNET_ID }}" || (echo "Missing OCI_SUBNET_ID" && exit 1)
+          test -n "${{ secrets.OCI_IMAGE_ID }}" || (echo "Missing OCI_IMAGE_ID" && exit 1)
+          test -n "${{ secrets.OCI_SSH_PUBLIC_KEY }}" || (echo "Missing OCI_SSH_PUBLIC_KEY" && exit 1)
 
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
